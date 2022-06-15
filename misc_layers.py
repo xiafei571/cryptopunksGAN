@@ -15,11 +15,13 @@ from keras import initializers, regularizers, constraints
 from keras.utils.generic_utils import get_custom_objects
 from keras.utils.conv_utils import conv_output_length
 # from keras.utils.conv_utils import normalize_data_format
-from keras.backend import normalize_data_format
+# from keras.backend import normalize_data_format
 
 from keras.layers import Conv2D, Conv2DTranspose, SeparableConv2D
 from keras.initializers import Constant
-K.set_image_dim_ordering('tf')
+# K.set_image_dim_ordering('tf')
+# K.image_data_format('tf')
+K.common.image_dim_ordering()
 
 #From:
 #https://github.com/mcgibbon/keras/blob/aaf924ca86f819c1d2493b9e7b3dfd4d3d6c729d/keras/layers/discrimination.py
@@ -197,7 +199,7 @@ class SubPixelUpscaling(Layer):
         super(SubPixelUpscaling, self).__init__(**kwargs)
 
         self.scale_factor = scale_factor
-        self.data_format = normalize_data_format(data_format)
+        self.data_format = K.normalize_data_format(data_format)
 
     def build(self, input_shape):
         pass
